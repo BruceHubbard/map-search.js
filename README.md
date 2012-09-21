@@ -1,19 +1,24 @@
 map-search.js
 =============
 
-Still a work in progress.  Needed a really simple wrapper around Google Maps that would call a function with the map boundaries whenever the map changed.  That way I could call a custom search API and add markers appropriately while keeping the core logic concise.
+Still a work in progress.  Needed a really simple wrapper around Google and Bing Maps that would call a function with the map boundaries whenever the map changed.  That way I could call a custom search API and add markers appropriately while keeping the core logic concise.
 
 TODO
 ---------
-- Add Bing map capability
-- Add ability to create the map (right now you have to pass in the map object)
+- Fix Bing map east/west when getting close to the 180/-180 boundary
 
 
 How To Install
-------
-Add script tag for your map provider
+=========
+- Get an API key from either [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial#api_key) or [Bing Maps](http://msdn.microsoft.com/en-us/library/ff428642.aspx)
+- Add script tag for your map provider
 
-**example here
+
+    <!-- Google Maps PLEASE REPLACE YOUR_KEY WITH YOUR ACTUAL API KEY -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&sensor=false"></script>
+
+    <!-- Bing Maps -->
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
 
 Add script tag for map-search.js
 
@@ -21,7 +26,7 @@ Add script tag for map-search.js
 
 
 How To Use
-------
+=========
 
 For an existing Google Map object:
 

@@ -1,4 +1,5 @@
-#need to handle screen resize
+#TODO: Maybe take in a search function OR a URL?
+	#But that would create a dependency on JQuery unless we did it the old fashion way
 
 class MapSearch
 	constructor: (@options) ->
