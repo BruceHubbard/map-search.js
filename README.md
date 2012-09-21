@@ -8,6 +8,18 @@ TODO
 - Add Bing map capability
 - Add ability to create the map (right now you have to pass in the map object)
 
+
+How To Install
+------
+Add script tag for your map provider
+
+**example here
+
+Add script tag for map-search.js
+
+**example here
+
+
 How To Use
 ------
 
@@ -18,7 +30,7 @@ For an existing Google Map object:
     var mapSearch = new MapSearch({
       map: map,
       mapType: MapSearch.Types.Google,
-      
+
       //this is called everytime the map changes and you'll hit your AJAX api
       //here and update pins, other parts of the screen, etc
       search: function(north, south, east, west) {
@@ -26,3 +38,8 @@ For an existing Google Map object:
         console.log('N: ' + north + ", S: " + south + ", E: " + east + ", W: " + west);
       }
     });
+
+Utility Methods
+--------
+
+map(): Returns the map object that was either passed in with the options or instantiated by map-search

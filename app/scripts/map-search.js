@@ -10,17 +10,28 @@ MapSearch = (function() {
     if (!this.options.mapType) {
       throw 'Must Specify Map Type';
     }
-    if (!this.options.map) {
-      throw 'Must Pass In Map';
+    if (!this.options.map && (!this.options.el || !this.options.mapOptions)) {
+      throw 'Must Pass In Map OR Map Element';
     }
     if (!this.options.search) {
       throw 'Must Pass In Search Function';
+    }
+    if (!this.options.map) {
+      this.createMap();
     }
     this.addEvents();
   }
 
   MapSearch.Types = {
     Google: "Google"
+  };
+
+  MapSearch.prototype.createMap = function() {
+    return this.options.map = new google.maps.Map(this.options.el, this.options.mapOptions);
+  };
+
+  MapSearch.prototype.map = function() {
+    return this.options.map;
   };
 
   MapSearch.prototype.addEvents = function() {

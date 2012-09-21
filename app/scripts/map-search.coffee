@@ -1,16 +1,24 @@
-#maybe take in a map object or an api key and create the map?
+#When dragging and letting go the map sometimes still slides, need to queue the search events
 
 class MapSearch
 	constructor: (@options) ->
 		throw 'Must Pass In Options' if !@options
 		throw 'Must Specify Map Type' if !@options.mapType
-		throw 'Must Pass In Map' if !@options.map
+		throw 'Must Pass In Map OR Map Element' if !@options.map and (!@options.el or !@options.mapOptions)
 		throw 'Must Pass In Search Function' if !@options.search
+
+		@createMap() if !@options.map
+
 		@addEvents()
 
 	@Types: {
 		Google: "Google"
 	}
+
+	createMap: -> 
+		@options.map = new google.maps.Map(@options.el,@options.mapOptions)
+
+	map: -> @options.map
 
 	addEvents: ->
 		if(@options.mapType == MapSearch.Types.Google)
