@@ -18,9 +18,8 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var mapSearch = new MapSearch({
+            var mapSearch = new GoogleMapSearch({
                 el: document.getElementById("map_canvas"),
-                mapType: MapSearch.Types.Google,
                 mapOptions: mapOptions,
                 search: function(north, south, east, west) {
                     //Instead of just outputting it do something with it here!

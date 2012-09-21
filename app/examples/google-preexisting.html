@@ -20,9 +20,8 @@
   
             var map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
 
-            var mapSearch = new MapSearch({
+            var mapSearch = new GoogleMapSearch({
                 map: map,
-                mapType: MapSearch.Types.Google,
                 search: function(north, south, east, west) {
                     //Instead of just outputting it do something with it here!
                     console.log('N: ' + north + ", S: " + south + ", E: " + east + ", W: " + west);
