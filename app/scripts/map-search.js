@@ -26,6 +26,8 @@ MapSearch = (function() {
     Google: "Google"
   };
 
+  MapSearch.EventThreshold = 100;
+
   MapSearch.prototype.createMap = function() {
     return this.options.map = new google.maps.Map(this.options.el, this.options.mapOptions);
   };
@@ -35,26 +37,24 @@ MapSearch = (function() {
   };
 
   MapSearch.prototype.addEvents = function() {
-    var callSearch, dragging,
+    var callSearch, eventNumber,
       _this = this;
     if (this.options.mapType === MapSearch.Types.Google) {
+      eventNumber = 0;
       callSearch = function() {
         var bounds;
         bounds = _this.options.map.getBounds();
         return _this.options.search(bounds.getNorthEast().lat(), bounds.getSouthWest().lat(), bounds.getNorthEast().lng(), bounds.getSouthWest().lng());
       };
-      dragging = false;
-      google.maps.event.addListener(this.options.map, 'dragstart', function() {
-        return dragging = true;
-      });
-      google.maps.event.addListener(this.options.map, 'dragend', function() {
-        dragging = false;
-        return callSearch();
-      });
       return google.maps.event.addListener(this.options.map, 'bounds_changed', function() {
-        if (!dragging) {
-          return callSearch();
-        }
+        var callIfLast, num;
+        num = eventNumber = eventNumber + 1;
+        callIfLast = function() {
+          if (num === eventNumber) {
+            return callSearch();
+          }
+        };
+        return setTimeout(callIfLast, MapSearch.EventThreshold);
       });
     }
   };

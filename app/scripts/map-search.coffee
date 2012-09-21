@@ -1,4 +1,5 @@
 #When dragging and letting go the map sometimes still slides, need to queue the search events
+#need to handle screen resize
 
 class MapSearch
 	constructor: (@options) ->
@@ -15,6 +16,8 @@ class MapSearch
 		Google: "Google"
 	}
 
+	@EventThreshold: 100
+
 	createMap: -> 
 		@options.map = new google.maps.Map(@options.el,@options.mapOptions)
 
@@ -22,24 +25,19 @@ class MapSearch
 
 	addEvents: ->
 		if(@options.mapType == MapSearch.Types.Google)
+			eventNumber = 0
 
 			callSearch = () => 
 				bounds = @options.map.getBounds()
 				@options.search(bounds.getNorthEast().lat(), bounds.getSouthWest().lat(), 
 								bounds.getNorthEast().lng(), bounds.getSouthWest().lng())
-
-			dragging = false
-			google.maps.event.addListener(@options.map, 'dragstart', () =>
-    			dragging = true
-    		)
-			google.maps.event.addListener(@options.map, 'dragend', () =>
-    			dragging = false
-    			callSearch()
-    		)
+			
 			google.maps.event.addListener(@options.map, 'bounds_changed', () =>
-				if !dragging
-				  callSearch()
-    		)
-			#need to handle screen resize
+				num = eventNumber = eventNumber+1
+
+				callIfLast = () =>
+					callSearch() if num == eventNumber
+
+				setTimeout(callIfLast, MapSearch.EventThreshold))
 
 
