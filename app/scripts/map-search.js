@@ -30,7 +30,11 @@ MapSearch = (function() {
   MapSearch.EventThreshold = 100;
 
   MapSearch.prototype.createMap = function() {
-    return this.options.map = new google.maps.Map(this.options.el, this.options.mapOptions);
+    if (this.options.mapType === MapSearch.Types.Google) {
+      return this.options.map = new google.maps.Map(this.options.el, this.options.mapOptions);
+    } else if (this.options.mapType === MapSearch.Types.Bing) {
+      return this.options.map = new Microsoft.Maps.Map(this.options.el, this.options.mapOptions);
+    }
   };
 
   MapSearch.prototype.map = function() {

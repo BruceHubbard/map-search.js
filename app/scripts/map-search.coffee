@@ -1,4 +1,3 @@
-#When dragging and letting go the map sometimes still slides, need to queue the search events
 #need to handle screen resize
 
 class MapSearch
@@ -20,7 +19,10 @@ class MapSearch
 	@EventThreshold: 100
 
 	createMap: -> 
-		@options.map = new google.maps.Map(@options.el,@options.mapOptions)
+		if(@options.mapType == MapSearch.Types.Google)
+			@options.map = new google.maps.Map(@options.el,@options.mapOptions)
+		else if(@options.mapType == MapSearch.Types.Bing)
+			@options.map = new Microsoft.Maps.Map(@options.el,@options.mapOptions)
 
 	map: -> @options.map
 
@@ -54,6 +56,3 @@ class MapSearch
 			
 			Microsoft.Maps.Events.addHandler(@options.map, 'viewchangeend', () =>
 				callSearch())
-#viewchangeend
-#Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
-

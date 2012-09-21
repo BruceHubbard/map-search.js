@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" style="width: 100%; height: 100%;"> <!--<![endif]-->
+    <head>
+        <title>Google Maps Example - Pre-existing Map</title>
+    </head>
+    <body style="width: 100%; height: 100%;">
+        <div id="map_canvas" style="width: 100%; height: 100%;"></div>
+        <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1">
+        </script>
+        <script type="text/javascript" src="../scripts/map-search.js"></script>
+        <script>
+            var mapOptions = {
+                credentials: 'AkRAIn0qESSizoWKjfOwSHeRveeKWuH1Pn2Cht4HiDb-wNXk5YRp0m-RN1fcbjQq',
+                center: new Microsoft.Maps.Location(39,-94),
+                zoom: 4,
+            };
+
+            var mapSearch = new MapSearch({
+                el: document.getElementById("map_canvas"),
+                mapType: MapSearch.Types.Bing,
+                mapOptions: mapOptions,
+                search: function(north, south, east, west) {
+                    //Instead of just outputting it do something with it here!
+                    console.log('N: ' + north + ", S: " + south + ", E: " + east + ", W: " + west);
+                }
+            });
+        </script>      
+    </body>
+</html>
