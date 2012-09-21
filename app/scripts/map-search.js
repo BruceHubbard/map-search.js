@@ -40,8 +40,8 @@ MapSearch = (function() {
   MapSearch.prototype.addEvents = function() {
     var callSearch, eventNumber,
       _this = this;
+    eventNumber = 0;
     if (this.options.mapType === MapSearch.Types.Google) {
-      eventNumber = 0;
       callSearch = function() {
         var bounds;
         bounds = _this.options.map.getBounds();
@@ -56,6 +56,16 @@ MapSearch = (function() {
           }
         };
         return setTimeout(callIfLast, MapSearch.EventThreshold);
+      });
+    } else if (this.options.mapType === MapSearch.Types.Bing) {
+      callSearch = function() {
+        var bounds;
+        console.log("HERE");
+        bounds = _this.options.map.getBounds();
+        return _this.options.search(bounds.center.latitude + (bounds.height / 2), bounds.center.latitude - (bounds.height / 2), bounds.center.longitude + (bounds.width / 2), bounds.center.longitude - (bounds.width / 2));
+      };
+      return Microsoft.Maps.Events.addHandler(this.options.map, 'viewchangeend', function() {
+        return callSearch();
       });
     }
   };

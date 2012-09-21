@@ -25,8 +25,9 @@ class MapSearch
 	map: -> @options.map
 
 	addEvents: ->
+		eventNumber = 0
+	
 		if(@options.mapType == MapSearch.Types.Google)
-			eventNumber = 0
 
 			callSearch = () => 
 				bounds = @options.map.getBounds()
@@ -40,5 +41,19 @@ class MapSearch
 					callSearch() if num == eventNumber
 
 				setTimeout(callIfLast, MapSearch.EventThreshold))
+		else if(@options.mapType == MapSearch.Types.Bing)
+			callSearch = () => 
+				console.log("HERE")
+				bounds = @options.map.getBounds()
+				@options.search(bounds.center.latitude + (bounds.height/2), 
+								bounds.center.latitude - (bounds.height/2), 
+								bounds.center.longitude + (bounds.width/2),
+								bounds.center.longitude - (bounds.width/2))
+			
 
+			
+			Microsoft.Maps.Events.addHandler(@options.map, 'viewchangeend', () =>
+				callSearch())
+#viewchangeend
+#Microsoft.Maps.Events.addHandler(map, 'click', displayEventInfo);
 
