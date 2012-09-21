@@ -23,7 +23,8 @@ MapSearch = (function() {
   }
 
   MapSearch.Types = {
-    Google: "Google"
+    Google: "Google",
+    Bing: "Bing"
   };
 
   MapSearch.EventThreshold = 100;

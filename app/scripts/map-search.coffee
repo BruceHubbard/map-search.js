@@ -13,7 +13,8 @@ class MapSearch
 		@addEvents()
 
 	@Types: {
-		Google: "Google"
+		Google: "Google",
+		Bing: "Bing"
 	}
 
 	@EventThreshold: 100
