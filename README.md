@@ -1,3 +1,4 @@
+
 map-search.js
 =============
 
@@ -8,21 +9,20 @@ TODO
 - Fix Bing map east/west when getting close to the 180/-180 boundary
 
 
-How To Install
-=========
+# How To Install
 - Get an API key from either [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial#api_key) or [Bing Maps](http://msdn.microsoft.com/en-us/library/ff428642.aspx)
 - Add script tag for your map provider
 
 
-    <!-- Google Maps PLEASE REPLACE YOUR_KEY WITH YOUR ACTUAL API KEY -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&sensor=false"></script>
+        <!-- Google Maps PLEASE REPLACE YOUR_KEY WITH YOUR ACTUAL API KEY -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&sensor=false"></script>
 
-    <!-- Bing Maps -->
-    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+        <!-- Bing Maps -->
+        <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
 
-Add script tag for map-search.js
+- Add script tag for map-search.js
 
-**example here
+        <script type="text/javascript" src="path_to_downloaded_map-search.js"></script>
 
 
 How To Use
