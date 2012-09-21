@@ -18,6 +18,9 @@ For an existing Google Map object:
     var mapSearch = new MapSearch({
       map: map,
       mapType: MapSearch.Types.Google,
+      
+      //this is called everytime the map changes and you'll hit your AJAX api
+      //here and update pins, other parts of the screen, etc
       search: function(north, south, east, west) {
         //Instead of just outputting it do something with it here!
         console.log('N: ' + north + ", S: " + south + ", E: " + east + ", W: " + west);
